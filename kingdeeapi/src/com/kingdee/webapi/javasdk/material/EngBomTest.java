@@ -1,23 +1,13 @@
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.kingdee.bos.webapi.entity.IdentifyInfo;
-import com.kingdee.bos.webapi.entity.QueryParam;
 import com.kingdee.bos.webapi.entity.RepoRet;
 import com.kingdee.bos.webapi.sdk.K3CloudApi;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.*;
+
 
 import static org.junit.Assert.fail;
 
 public class EngBomTest {
-    String FNumber = SeqHelper.genNumber("ENG_BOM");
+    String FNumber = SeqHelper.genNumber("BT");//单据编码，字符串类型（使用编码时必录）
 @Test
 public void searchBom() {
 //注意 1：此处不再使用参数形式传入用户名及密码等敏感信息，改为在登录配置文件中设置。

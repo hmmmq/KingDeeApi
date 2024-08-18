@@ -1,25 +1,20 @@
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.kingdee.bos.webapi.entity.IdentifyInfo;
-import com.kingdee.bos.webapi.entity.QueryParam;
 import com.kingdee.bos.webapi.entity.RepoRet;
 import com.kingdee.bos.webapi.sdk.K3CloudApi;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
-
 import static org.junit.Assert.fail;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BdMaterialTest {
-    private static String FNumber = SeqHelper.genNumber("MT");
+    private static String FNumber = SeqHelper.genNumber("MT"); //单据编码，字符串类型（使用编码时必录）
     private static String FName = "auwl_" + UUID.randomUUID().toString();
     private static String groupid = "";
     private static String materid = "";
