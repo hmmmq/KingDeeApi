@@ -1,4 +1,3 @@
-package com.kingdee.webapi.javasdk.common;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

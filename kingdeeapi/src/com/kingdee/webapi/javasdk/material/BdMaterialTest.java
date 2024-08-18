@@ -1,5 +1,3 @@
-package com.kingdee.webapi.javasdk.material;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -7,7 +5,6 @@ import com.kingdee.bos.webapi.entity.IdentifyInfo;
 import com.kingdee.bos.webapi.entity.QueryParam;
 import com.kingdee.bos.webapi.entity.RepoRet;
 import com.kingdee.bos.webapi.sdk.K3CloudApi;
-import com.kingdee.webapi.javasdk.common.SeqHelper;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -22,7 +19,7 @@ import static org.junit.Assert.fail;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BdMaterialTest {
-    private static String FNumber = SeqHelper.genNumber("WL");
+    private static String FNumber = SeqHelper.genNumber("MT");
     private static String FName = "auwl_" + UUID.randomUUID().toString();
     private static String groupid = "";
     private static String materid = "";
@@ -49,7 +46,7 @@ public class BdMaterialTest {
         iden.setServerUrl(properties.getProperty("X-KDApi-ServerUrl"));
         iden.setStockTimeout(Integer.parseInt(properties.getProperty("X-KDApi-StockTimeout")));
         K3CloudApi api = new K3CloudApi(iden);
-        String data = "{\"CreateOrgId\": 0,\"Number\": "+"\""+FNumber+"\""+",\"Id\": \"\",\"IsSortBySeq\": \"false\"}";
+        String data = "{\"CreateOrgId\": 0,\"Number\": "+"\""+ FNumber +"\""+",\"Id\": \"\",\"IsSortBySeq\": \"false\"}";
         String result = api.view("BD_Material", data);
         Gson gson = new Gson();
         RepoRet repoRet = gson.fromJson(result, RepoRet.class);
