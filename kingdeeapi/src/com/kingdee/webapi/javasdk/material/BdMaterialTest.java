@@ -14,7 +14,7 @@ import static org.junit.Assert.fail;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BdMaterialTest {
-    private static String FNumber = SeqHelper.genNumber("MT"); //单据编码，字符串类型（使用编码时必录）
+    private static String FNumber = "MFGWL600001"; //单据编码，字符串类型（使用编码时必录）
     private static String FName = "auwl_" + UUID.randomUUID().toString();
     private static String groupid = "";
     private static String materid = "";
@@ -41,7 +41,7 @@ public class BdMaterialTest {
         iden.setServerUrl(properties.getProperty("X-KDApi-ServerUrl"));
         iden.setStockTimeout(Integer.parseInt(properties.getProperty("X-KDApi-StockTimeout")));
         K3CloudApi api = new K3CloudApi(iden);
-        String data = "{\"CreateOrgId\": 0,\"Number\": "+"\""+ FNumber +"\""+",\"Id\": \"\",\"IsSortBySeq\": \"false\"}";
+        String data = "{\"CreateOrgId\": 1,\"Number\": "+"\""+ FNumber +"\""+",\"Id\": \"\",\"IsSortBySeq\": \"false\"}";
         String result = api.view("BD_Material", data);
         Gson gson = new Gson();
         RepoRet repoRet = gson.fromJson(result, RepoRet.class);
@@ -51,7 +51,22 @@ public class BdMaterialTest {
             fail("物料查看接口: " + result);
         }
     }
-
+    @Test
+    public void ltestMeterials() throws Exception{
+        //注意 1：此处不再使用参数形式传入用户名及密码等敏感信息，改为在登录配置文件中设置。
+        //注意 2：必须先配置第三方系统登录授权信息后，再进行业务操作，详情参考各语言版本SDK介绍中的登录配置文件说明。
+        //读取配置，初始化SDK
+        K3CloudApi client = new K3CloudApi();
+        //请求参数，要求为json字符串
+        String jsonData = "{\"FormId\":\"BD_Material\",\"FieldKeys\":\"FNumber,FName,FCreateOrgId,FUseOrgId\",\"FilterString\":[],\"OrderString\":\"\",\"TopRowCount\":0,\"StartRow\":0,\"Limit\":2000,\"SubSystemId\":\"\"}";
+        try {
+            //调用接口
+            String resultJson = String.valueOf(client.executeBillQuery(jsonData));
+            System.out.println("接口返回结果: " + resultJson);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
 
 }
 
